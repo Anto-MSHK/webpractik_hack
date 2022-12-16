@@ -1,5 +1,6 @@
 import React from 'react';
 import {Breadcrumb, Button, Card, Checkbox, Input, Popover, Segmented, Upload} from "antd";
+import { FileAddFilled } from '@ant-design/icons'
 
 const {Search} = Input;
 
@@ -38,7 +39,7 @@ export const BreadCrumbs = () => {
                         </Breadcrumb>
                     </div>
                     <div>
-                        <Search placeholder="Поиск" style={{width: 800}}/>
+                        <Search placeholder="Поиск"/>
                     </div>
                     <div>
                         <Segmented options={['По дням', 'По неделям', 'По месяцам', 'По кварталам', 'По годам']}
@@ -46,7 +47,7 @@ export const BreadCrumbs = () => {
                     </div>
                     <div className={'breadCrumbs-button'}>
                         <Popover content={content} trigger="click">
-                            <Button type={'primary'}>Добавить</Button>
+                            <Button type={'primary'}><FileAddFilled /></Button>
                         </Popover>
                     </div>
                 </div>
