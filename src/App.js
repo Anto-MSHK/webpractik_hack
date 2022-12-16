@@ -5,7 +5,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
-import { Router } from './Router';
+import { Router } from "./Router";
 const { Header, Content, Sider } = Layout;
 const items1 = ["1", "2", "3"].map((key) => ({
   key,
@@ -38,23 +38,6 @@ const App = () => {
         <div className="logo" />
       </Header>
       <Layout>
-        <Sider
-          width={200}
-          style={{
-            background: colorBgContainer,
-          }}
-        >
-          <Menu
-            mode="inline"
-            defaultSelectedKeys={["1"]}
-            defaultOpenKeys={["sub1"]}
-            style={{
-              height: "100%",
-              borderRight: 0,
-            }}
-            items={items2}
-          />
-        </Sider>
         <Layout
           style={{
             padding: "0 24px 24px",
