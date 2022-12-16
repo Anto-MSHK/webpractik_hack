@@ -37,7 +37,7 @@ const App = () => {
     return (
         <Layout>
             <Header className="header">
-                <div className="logo"/>
+                <h1 style={{color: 'white', margin: '0 auto'}}>Вебпрактик</h1>
             </Header>
             <Layout>
                 <Layout
