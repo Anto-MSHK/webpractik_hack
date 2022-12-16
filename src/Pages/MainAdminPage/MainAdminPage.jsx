@@ -1,63 +1,67 @@
-import React from "react";
-import "./MainAdminPage.css";
-import { Card, Button, Modal } from "antd";
+import React from 'react';
+import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
+import { Avatar, List, Space } from 'antd';
 
-const info = () => {
-  Modal.info({
-    title: "АО «Гринатом»",
-    content: (
-        <div>
-          <p>
-            Адрес: 115230, г. Москва, 1-й Нагатинский проезд, д.10, стр. 1, БЦ
-            «Ньютон Плаза»
-          </p>
-          <p>Управление коммуникаций АО «Гринатом»</p>
-          <p>E-mail: gren-a-communication@greenatom.ru</p>
-          <p>Для резюме соискателей:</p>
-          <p>E-mail: rabota@greenatom.ru</p>
-        </div>
-    ),
-    onOk() {},
-  });
-};
+const data = Array.from({
+    length: 23,
+}).map((_, i) => ({
+    href: 'https://ant.design',
+    title: `ant design part ${i}`,
+    avatar: 'https://joeschmoe.io/api/v1/random',
+    description:
+        'Ant Design, a design language for background applications, is refined by Ant UED Team.',
+    content:
+        'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+}));
+const IconText = ({ icon, text }) => (
+    <Space>
+        {React.createElement(icon)}
+        {text}
+    </Space>
+);
 
 export const Main = () => {
   return (
-      <div className={"main-wrapper"}>
-        <div className={"brand-info"}>
-          <hr style={{ border: "none" }} />
-          <div style={{ fontSize: "28px", fontWeight: "bold" }}>Гринатом</div>
-          <hr style={{ border: "1px solid whitesmoke" }} />
-          <div className={"brand-description"}>
-            Ведущий ИТ-интегратор Госкорпорации «Росатом». Компания ведет
-            собственную разработку ПО, осуществляет поддержку и развитие
-            корпоративных ИТ-систем, разрабатывает программных роботов, занимается
-            проектным управлением, импортозамещением, применяет искусственный
-            интеллект и машинное обучение. Сегодня Гринатом создает самые
-            современные решения для цифровизации атомной отрасли и становится
-            одной из самых динамично развивающихся ИТ-компаний России.
-          </div>
-        </div>
-        <div className={"tests"}>
-          <Card title={"Тесты"}>
-            <div className={"testcard-wrapper"}>
-                      <Card
-                          title={'Ыыыыыы'}
-                          style={{ width: "100%", marginTop: "5px" }}
-                      >
-                        <div
-                            style={{ display: "flex", justifyContent: "space-between" }}
-                        >
-                          11111
-                            <Button type="primary">Пройти тест!</Button>
-                        </div>
-                      </Card>
-            </div>
-          </Card>
-          <Button style={{ width: "100%", marginTop: "5px" }} onClick={info}>
-            Контактная информация
-          </Button>
-        </div>
-      </div>
+      <List
+          itemLayout="vertical"
+          size="large"
+          style={{height: '100%'}}
+          pagination={{
+              onChange: (page) => {
+                  console.log(page);
+              },
+              pageSize: 3,
+          }}
+          dataSource={data}
+          footer={
+              <div>
+                  <b>ant design</b> footer part
+              </div>
+          }
+          renderItem={(item) => (
+              <List.Item
+                  key={item.title}
+                  actions={[
+                      <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
+                      <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
+                      <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
+                  ]}
+                  extra={
+                      <img
+                          width={272}
+                          alt="logo"
+                          src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                      />
+                  }
+              >
+                  <List.Item.Meta
+                      avatar={<Avatar src={item.avatar} />}
+                      title={<a href={item.href}>{item.title}</a>}
+                      description={item.description}
+                  />
+                  {item.content}
+              </List.Item>
+          )}
+      />
   );
 };
