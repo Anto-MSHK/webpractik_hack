@@ -1,0 +1,11 @@
+.folder-main{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.content-folder{
+    display: flex;
+    justify-content: space-between;
+    column-gap: 10px;
+}
