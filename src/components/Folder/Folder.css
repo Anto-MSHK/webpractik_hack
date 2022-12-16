@@ -1,7 +1,6 @@
 .folder-main{
     display: flex;
-    justify-content: space-between;
-
+    flex-direction: column;
 }
 
 .content-folder{
