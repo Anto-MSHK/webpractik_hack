@@ -4,9 +4,9 @@ import {
   NotificationOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Breadcrumb, Layout, Menu, theme } from "antd";
+import { Breadcrumb, Layout, theme } from "antd";
 import { Router } from "./Router";
-const { Header, Content, Sider } = Layout;
+const { Header, Content } = Layout;
 const items1 = ["1", "2", "3"].map((key) => ({
   key,
   label: `nav ${key}`,
