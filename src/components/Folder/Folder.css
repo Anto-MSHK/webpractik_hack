@@ -24,7 +24,7 @@
   padding: 10px;
   width: 180px;
   height: 135px;
-  background-color: rgb(46, 46, 220);
+  background-color: #1677ff;
   border-radius: 5px;
 }
 
@@ -33,6 +33,6 @@
   top: -25px;
   border-top-left-radius: 5px;
   width: 100px;
-  border-bottom: 30px solid rgb(46, 46, 220);
+  border-bottom: 30px solid #1677ff;
   border-right: 30px solid transparent;
 }
