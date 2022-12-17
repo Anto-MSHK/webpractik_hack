@@ -55,7 +55,51 @@ export const BreadCrumbsFolder = () => {
               gap: "5px",
               height: "fit-content",
             }}
-          ></div>
+
+          >
+          <Form.Item
+        label="Название"
+        name = 'folderName'
+        rules={[
+          {
+            required: true,
+            message: "Обязательное поле",
+          },
+          () => ({
+            validator(_, value) {
+              if (
+                !value ||
+                value.match(/^([а-яА-яa-zA-z“№:()-_.]{7,30})$/)
+              ) {
+                return Promise.resolve();
+              }
+              return Promise.reject(
+                new Error(
+                  "Название должно содержать от 7 до 30 символов"
+                )
+              );
+            },
+          }),
+        ]}
+      >
+        <Input/>
+      </Form.Item>
+
+      <Form.Item
+        label="Описание"
+
+      >
+        <Input/>
+      </Form.Item>
+
+      <Form.Item
+        label="Скрыть папку"
+      >
+        <Checkbox/>
+      </Form.Item>
+
+
+          </div>
         </Form>
       </div>
     </div>
