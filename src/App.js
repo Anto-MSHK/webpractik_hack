@@ -6,8 +6,9 @@ import {
 } from "@ant-design/icons";
 import { Layout, theme, Card, Button } from "antd";
 import { Router } from "./Router";
-import { BreadCrumbs } from "./components/breadCrumbs/breadCrumbs";
-import { Link} from "react-router-dom";
+import { BreadCrumbs } from "./Components/breadCrumbs/breadCrumbs";
+import { Link } from "react-router-dom";
+import { Head } from "./Components/head/Head";
 
 
 const { Header, Content } = Layout;
@@ -38,36 +39,28 @@ const App = () => {
   } = theme.useToken();
   return (
     <Layout>
-      <Header className="header">
-        <div style={{ display: 'flex', height: '64px', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Link to='/'><h1 style={{ color: 'white' }}>Вебпрактик</h1></Link>
-          <Link style={{ color: 'white' }} to='/login'><UserOutlined style={{fontSize:'20px'}}/> <Button ghost>Login/Register</Button></Link>
-        </div>
-
-      </Header>
+      <Head />
       <Layout>
         <Layout
           style={{
             padding: "0 24px 24px",
             height: "100vh",
-            marginTop: '10px',
-            rowGap: '5px'
-          
+            marginTop: "10px",
+            rowGap: "5px",
           }}
         >
-        
-          <BreadCrumbs />
-          <Card style={{ width: 'fit-content', margin: '0 auto'}}>
+          <Card
+            style={{ width: "fit-content", margin: "0 auto", width: "100%" }}
+            size="small"
+          >
             <Content
               style={{
-                padding: 24,
+                padding: 10,
                 margin: 0,
-                minHeight: 280,
+                //  width: "",
                 background: colorBgContainer,
-              
               }}
             >
-
               <Router />
             </Content>
           </Card>
