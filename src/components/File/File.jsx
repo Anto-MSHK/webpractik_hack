@@ -64,10 +64,10 @@ const FileComponent = ({ name, extension, url, _id }) => {
           style={{
             //   position: "absolute",
             width: "270px",
-            maxHeight: "175px",
             overflow: "hidden",
             borderRadius: 10,
             border: "solid #009FE3 3px",
+             height: '180px'
           }}
         >
           <DocViewer

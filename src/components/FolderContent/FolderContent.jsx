@@ -12,7 +12,7 @@ export const FolderContent = () => {
   return (
     <div className="folder_content">
       <BreadCrumbsFile />
-      <div style={{display:'flex', gap: '20px', marginTop: '20px'}}>
+      <div style={{display:'flex', gap: '20px', marginTop: '20px', justifyContent:'space-evenly'}}>
         {files ? (
           files.map((file) => <FileComponent {...file} />)
         ) : (
