@@ -45,7 +45,7 @@ const FileComponent = ({name, extension, url, _id}) => {
       const downloadUrl = window.URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = downloadUrl
-      link.download = fileName
+      link.download = name
       document.body.appendChild(link)
       link.click()
       link.remove()
@@ -58,7 +58,7 @@ const FileComponent = ({name, extension, url, _id}) => {
   }
 
   return (
-    
+
     <div className='file-main'>
       <div style={{ width: '180px', height: '180px' }}>
         <Link to='/file'>
