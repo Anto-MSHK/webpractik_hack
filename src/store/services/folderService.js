@@ -3,6 +3,7 @@ import customFetchBase from "../../middleware/interceptor";
 
 export const folderAPI = createApi({
   reducerPath: "folderAPI",
+  tagTypes: ['Folders'],
   baseQuery: customFetchBase,
   endpoints: (build) => ({
     getFolders: build.query({
@@ -15,7 +16,8 @@ export const folderAPI = createApi({
       query: (id) => ({
         url: `folder?id=${id}`,
       }),
-      transformResponse: (response) => response.result,
+      transformResponse: (response) => response.result.folder,
+
     }),
     createFolder: build.mutation({
       query: (content) => ({
@@ -23,6 +25,7 @@ export const folderAPI = createApi({
         method: "POST",
         body: content,
       }),
+     
     }),
     changeFolder: build.mutation({
       query: (content) => ({
@@ -37,6 +40,15 @@ export const folderAPI = createApi({
         method: "DELETE",
       }),
     }),
+    getFolderFiles: build.query({
+      query: (id) => ({
+        url: `folder?id=${id}`,
+      }),
+      transformResponse: (response) =>{
+       
+        return response.result
+      }
+    })
   }),
 });
 
@@ -46,4 +58,5 @@ export const {
   useDeleteFolderMutation,
   useGetFolderQuery,
   useGetFoldersQuery,
+  useGetFolderFilesQuery,
 } = folderAPI;

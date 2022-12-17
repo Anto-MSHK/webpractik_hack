@@ -7,15 +7,17 @@ import {
 import { Button, Input, Space } from "antd";
 import Form from "antd/es/form/Form";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { setFolderId } from "../../store/slices/folderSlice";
 import "./Folder.css";
 
-export const Folder = ({ name, createDate }) => {
+export const Folder = ({ name, createDate, id }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [folderName, setFolderName] = useState("");
   const [date, setDate] = useState("");
   const [form] = Form.useForm();
-
+  const dispatch = useDispatch()
   const onFinish = (fieldsValue) => {
     setIsEdit(!isEdit);
     setDate(fieldsValue["date"]);
@@ -28,9 +30,9 @@ export const Folder = ({ name, createDate }) => {
   };
 
   return (
-    <div className="folder-main">
+    <div onClick={()=> dispatch(setFolderId(id))} className="folder-main">
       <div style={{ width: "180px", height: "140px" }}>
-        <Link to="/folder">
+        <Link to={`/folders/${name}`}>
           {" "}
           {/* <FolderFilled style={{ fontSize: "200px", color: 'gray' }} /> */}
           <div className="folderFigure">

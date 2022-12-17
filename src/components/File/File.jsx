@@ -15,13 +15,7 @@ export const File = () => {
   const [form] = Form.useForm()
 
   const onFinish = fieldsValue => {
-    /*   const values = {
-      ...fieldsValue,
 
-      'date': fieldsValue['date'].format('YYYY-MM-DD HH:mm:ss'),
-
-    };
-    console.log(values['date']); */
 
     setIsEdit(!isEdit)
     setDate(fieldsValue['date'])
@@ -147,100 +141,7 @@ export const File = () => {
           </div>
         )}
       </div>
-      {/*    {
-
-        isEdit
-          ?
-
-          <div style={{display:'flex', flexDirection: 'column', margin: '0 auto', justifyContent: 'center', alignItems:'center'}}>
-            <Link to='/folder'> <FolderFilled style={{ fontSize: "200px", color: 'gray' }} /></Link>
-            <div >
-
-              <Form
-            
-                form={form}
-                name='basic'
-                initialValues={{ remember: true }}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-                autoComplete="off">
-                <div style={{display:'flex', margin: '0 auto'}}>
-                  <div style={{display:'flex', flexDirection:'column'}}>
-                    <Form.Item style={{margin: '2px'}} 
-                      name='folderName'
-
-                      rules={[{
-                        required: true,
-                        message: 'Обязтельное поле'
-                      }, () => ({
-                        validator(_, value) {
-                          if (!value || value.match(/^([а-яА-яa-zA-z“№:()-_.]{5,20})$/)) {
-                            return Promise.resolve()
-                          }
-                          return Promise.reject(new Error('Название должно содержать от 5 до 20 символов'))
-                        }
-
-                      })]}>
-                      <Input value={folderName} placeholder='Название' />
-                    </Form.Item>
-
-                    <Form.Item style={{margin: '0'}}
-                      rules={[{
-                        required: true,
-                        message: 'Обязтельное поле'
-                      }]}
-                      name="date" >
-                      <DatePicker value={date} showTime format="YYYY-MM-DD HH:mm:ss" />
-                    </Form.Item>
-
-                  </div>
-
-                  <Form.Item style={{margin: '0'}}  wrapperCol={{ offset: 8, span: 16 }}>
-                    <Button size='small' type="primary" htmlType="submit">
-                      <CheckCircleFilled color='white' style={{ fontSize: "15px" }} />
-                    </Button>
-                  </Form.Item>
-                </div>
-              </Form>
-
-
-
-            </div>
-          </div>
-          :
-          <Space direction='vertical'>
-
-            <Link to='/folder'> <FolderFilled style={{ fontSize: "200px", color: 'gray' }} /></Link>
-
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-
-              <Space className='content-folder' direction="horizontal">
-                <Space direction="vertical">
-
-                  {
-                    folderName
-                      ?
-                      <div>{folderName}</div>
-                      :
-                      <span>Название</span>
-                  }
-
-                  {
-                    date
-                      ?
-                      <div>{date}</div>
-                      :
-                      <span>Дата</span>
-                  }
-
-                </Space>
-                <EditOutlined onClick={() => { setIsEdit(!isEdit) }} style={{ fontSize: "20px" }} />
-              </Space>
-
-            </div>
-          </Space>
-
-      } */}
+      
     </div>
   )
 }

@@ -6,9 +6,9 @@ import {
 } from "@ant-design/icons";
 import { Layout, theme, Card, Button } from "antd";
 import { Router } from "./Router";
-import { BreadCrumbs } from "./Components/breadCrumbs/breadCrumbs";
+import { BreadCrumbs } from "./components/breadCrumbs/breadCrumbs";
 import { Link } from "react-router-dom";
-import { Head } from "./Components/head/Head";
+import { Head } from "./components/head/Head";
 
 
 const { Header, Content } = Layout;

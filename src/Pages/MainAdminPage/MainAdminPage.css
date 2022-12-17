@@ -1,5 +1,6 @@
 .mainAdmpage-main {
   display: flex;
+  margin-top: 30px;
   width: 1000px;
   flex-direction: row;
   column-gap: 100px;

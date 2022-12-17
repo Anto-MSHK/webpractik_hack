@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { BreadCrumbs } from "./Components/breadCrumbs/breadCrumbs";
-import Employees from "./Components/Employees/Employees";
-import { Folder } from "./Components/Folder/Folder";
+import { BreadCrumbs } from "./components/breadCrumbs/breadCrumbs";
+import FolderContent from "./components/breadCrumbs/FolderContent/FolderContent";
+import Employees from "./components/Employees/Employees";
+import { Folder } from "./components/Folder/Folder";
 
 import LoginForm from "./Pages/AuthPage/LoginFrom";
 import RegisterForm from "./Pages/AuthPage/RegisterForm";
@@ -22,8 +23,14 @@ export const Router = () => {
         <BreadCrumbs />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/folder" element={<Folder />} />
+          <Route path="/folders" element={<Main />} >
+            </Route>
+              <Route 
+                path="/folders/:folderName"
+                element={<FolderContent />} 
+                />
           <Route path="/employees" element={<Employees />} />
+
         </Routes>
       </div>
     );
@@ -32,6 +39,7 @@ export const Router = () => {
       <div>
         <Routes>
           <Route path="/" element={<LoginForm />} />/
+          <Route path="/login" element={<LoginForm />} />/
           <Route path="/registration" element={<RegisterForm />}></Route>
         </Routes>
       </div>
