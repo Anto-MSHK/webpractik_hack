@@ -78,11 +78,15 @@ const FileComponent = ({ name, extension, url, _id }) => {
                 disableHeader: true,
                 disableFileName: true,
               },
+              pdfZoom: {
+                defaultZoom: 1,
+                zoomJump: 0.1,
+              },
             }}
             style={{
               width: "300px",
               marginLeft: "-15px",
-              marginTop: "-15px",
+              marginTop: extension !== "pdf" ? "-15px" : "-100px",
             }}
           />
         </div>
