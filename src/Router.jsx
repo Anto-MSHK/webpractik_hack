@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Employees from "./components/Employees/Employees";
-import {Folder} from "./components/Folder/Folder";
+import {Folder} from "./components/Folder/FolderTest";
 import LoginForm from "./Pages/AuthPage/LoginFrom";
 import RegisterForm from "./Pages/AuthPage/RegisterForm";
 import { Main } from "./Pages/MainAdminPage/MainAdminPage";

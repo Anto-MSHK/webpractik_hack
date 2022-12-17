@@ -33,8 +33,21 @@ export const Folder = () => {
   return (
     <div className='folder-main'>
       
-            <div style={{width: '180px', height: '180px'}}>
-            <Link to='/folder'> <FolderFilled style={{ fontSize: "200px", color: 'gray' }} /></Link>
+            <div style={{width: '180px', height: '140px'}}>
+            <Link to='/folder'> {/* <FolderFilled style={{ fontSize: "200px", color: 'gray' }} /> */}
+            <div className='folderFigure'>
+              <div className='folderTrapezoid'></div>
+              <div className='folderSquare'>
+                <div style={{width: '30px', height:'30px', backgroundColor:'white'}}></div>
+                <div style={{width: '30px', height:'30px', backgroundColor:'white'}}></div>
+                <div style={{width: '30px', height:'30px', backgroundColor:'white'}}></div>
+                <span style={{color: 'white'}}>Антон</span>
+              </div>
+            </div>
+        
+            
+            
+            </Link>
             </div>
             
         
@@ -59,7 +72,7 @@ export const Folder = () => {
       
                             rules={[{
                               required: true,
-                              message: 'Обязтельное поле'
+                              message: 'Обязательное поле'
                             }, () => ({
                               validator(_, value) {
                                 if (!value || value.match(/^([а-яА-яa-zA-z“№:()-_.]{5,20})$/)) {
@@ -75,7 +88,7 @@ export const Folder = () => {
                           <Form.Item style={{margin: '0'}}
                              rules={[{
                               required: true,
-                              message: 'Обязтельное поле'
+                              message: 'Обязательное поле'
                             }, () => ({
                               validator(_, value) {
                                 if (!value || value.match(/(\d{2})(.{1})(\d{2})(.{1})(\d{4})/)) {

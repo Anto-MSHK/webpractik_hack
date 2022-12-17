@@ -2,7 +2,7 @@ import React from 'react';
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
 import { Avatar, List, Space } from 'antd';
 import './MainAdminPage.css'
-import {Folder} from "../../components/Folder/Folder";
+import {Folder} from "../../components/Folder/FolderTest";
 
 const data = Array.from({
     length: 23,
