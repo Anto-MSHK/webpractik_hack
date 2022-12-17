@@ -46,7 +46,7 @@ export const Folder = ({ name, createDate, id }) => {
           <div className="folderFigure">
             <div className="folderTrapezoid"></div>
             <div className="folderSquare">
-              <div>
+              <div style={{display: 'flex', width:'100%', flexWrap: 'wrap', gap:'5px',justifyContent: "space-evenly"}}>
                   {
                     files
                      &&

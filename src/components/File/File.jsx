@@ -162,7 +162,9 @@ const FileComponent = ({ name, extension, url, _id }) => {
                 flexDirection: "column",
               }}
             >
-              {name ? (
+              {
+              name 
+              ? (
                 <div
                   style={{
                     display: "flex",
