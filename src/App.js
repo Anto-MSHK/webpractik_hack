@@ -10,6 +10,7 @@ import { BreadCrumbs } from "./Components/breadCrumbs/breadCrumbs";
 import { Link } from "react-router-dom";
 import { Head } from "./Components/head/Head";
 
+
 const { Header, Content } = Layout;
 const items1 = ["1", "2", "3"].map((key) => ({
   key,

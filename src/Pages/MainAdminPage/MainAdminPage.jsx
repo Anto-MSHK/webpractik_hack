@@ -1,3 +1,4 @@
+
 import React from "react";
 import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
 import { Avatar, List, Space } from "antd";
@@ -5,7 +6,6 @@ import "./MainAdminPage.css";
 import { Folder } from "../../Components/Folder/Folder";
 import { BreadCrumbs } from "../../Components/breadCrumbs/breadCrumbs";
 import { useGetFoldersQuery } from "../../store/services/folderService";
-
 const data = Array.from({
   length: 23,
 }).map((_, i) => ({

@@ -32,7 +32,7 @@ const content = (
 export const BreadCrumbs = () => {
   return (
     <div className={"breadCrumbs-main"}>
-      <Card style={{ backgroundColor: "#f7f7f7" }}>
+      <Card>
         <div
           style={{
             display: "flex",
