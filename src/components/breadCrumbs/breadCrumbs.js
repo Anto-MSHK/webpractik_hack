@@ -30,9 +30,10 @@ export const BreadCrumbs = () => {
    
 /*    const navigate = useNavigate(); */
    const   createFolder = async() => {
-    addFolder({
+      addFolder({
     name: folderName, 
     description: 'test',
+    createDate: date,
    })
    }
   const onFinish = (fieldsValue) => {

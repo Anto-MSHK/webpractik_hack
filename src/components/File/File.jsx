@@ -1,19 +1,25 @@
 import {
-  FolderFilled,
+  FileFilled,
   EditOutlined,
-  CheckCircleFilled
+  CheckCircleFilled,
+  DownloadOutlined
 } from '@ant-design/icons'
+import { type } from '@testing-library/user-event/dist/type'
 import { Button, Form, Input, Space, DatePicker } from 'antd'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './File.css'
 
-export const File = () => {
+
+const FileComponent = ({name, extension, url, _id}) => {
+
   const [isEdit, setIsEdit] = useState(false)
-  const [folderName, setFolderName] = useState('')
+  const [fileName, setFolderName] = useState('')
   const [date, setDate] = useState('')
   const [form] = Form.useForm()
 
+  
+ 
   const onFinish = fieldsValue => {
 
 
@@ -27,12 +33,37 @@ export const File = () => {
     console.log('Failed:', errorInfo)
   }
 
+  const downloadFile = async () =>{
+    const response = await fetch(`https://serverpractik-hack.onrender.com${url}`,{
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+
+    if ( response.ok) {
+      const blob = await response.blob()
+      const downloadUrl = window.URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = downloadUrl
+      link.download = fileName
+      document.body.appendChild(link)
+      link.click()
+      link.remove()
+    }
+  }
+
+  const downLoadClickHandler = (e) =>{
+    e.stopPropagation()
+    downloadFile()
+  }
+
   return (
+    
     <div className='file-main'>
       <div style={{ width: '180px', height: '180px' }}>
         <Link to='/file'>
           {' '}
-          <FileFilled  style={{ fontSize: '200px', color: 'gray' }} />
+          <FileFilled  style={{ fontSize: '180px', color: 'gray' }} />
         </Link>
       </div>
 
@@ -83,32 +114,7 @@ export const File = () => {
                     <Input value={fileName} placeholder='Название' />
                   </Form.Item>
 
-                  <Form.Item
-                    style={{ margin: '0' }}
-                    rules={[
-                      {
-                        required: true,
-                        message: 'Обязтельное поле'
-                      },
-                      () => ({
-                        validator (_, value) {
-                          if (
-                            !value ||
-                            value.match(/(\d{2})(.{1})(\d{2})(.{1})(\d{4})/)
-                          ) {
-                            return Promise.resolve()
-                          }
-                          return Promise.reject(
-                            new Error('Неверный формат даты')
-                          )
-                        }
-                      })
-                    ]}
-                    name='date'
-                  >
-                    <Input value={date} placeholder='Дата: (дд.мм.гггг)' />
-                    {/*   <DatePicker value={date} showTime format="YYYY-MM-DD HH:mm:ss" /> */}
-                  </Form.Item>
+                 
                 </div>
 
                 <Form.Item
@@ -122,15 +128,21 @@ export const File = () => {
                     />
                   </Button>
                 </Form.Item>
+              
               </div>
             </Form>
           </div>
         ) : (
           <div className='content-file' style={{ display: 'flex', gap: '5px' }}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              {fileName ? <div>{fileName}</div> : <span>Название</span>}
+              {name 
+              ? 
+              <div>{name}.{extension}</div> 
+              : 
+              <span>Название</span>}
+        
+       <Button onClick={(e)=> downLoadClickHandler(e)} icon={<DownloadOutlined />} />
 
-              {date ? <div>{date}</div> : <span>Дата</span>}
             </div>
             <EditOutlined
               onClick={() => {
@@ -141,7 +153,8 @@ export const File = () => {
           </div>
         )}
       </div>
-      
     </div>
   )
 }
+
+export default FileComponent

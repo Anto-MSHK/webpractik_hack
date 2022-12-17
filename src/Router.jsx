@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { BreadCrumbs } from "./components/breadCrumbs/breadCrumbs";
-import FolderContent from "./components/breadCrumbs/FolderContent/FolderContent";
+import FolderContent from "./components/Folder/FolderContent/FolderContent";
 import Employees from "./components/Employees/Employees";
 import { Folder } from "./components/Folder/Folder";
 
