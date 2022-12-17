@@ -1,5 +1,5 @@
-import { FolderFilled, EditOutlined,CheckCircleTwoTone } from '@ant-design/icons'
-import { Input } from 'antd'
+import { FolderFilled, EditOutlined, CheckCircleTwoTone } from '@ant-design/icons'
+import { Button, Input, Space } from 'antd'
 import React, { useState } from 'react'
 import './Folder.css'
 
@@ -16,49 +16,54 @@ export const Folder = () => {
           ?
 
           <div>
-            <div><FolderFilled style={{ fontSize: "200px", color: 'gray' }} /></div>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <div className='edit-folder'>
-                <Input value={folderName} onChange={(e) => setFolderName(e.target.value)} placeholder="Название" />
-                <Input value={date}  onChange={(e) => setDate(e.target.value)} placeholder='Дата' />
-              </div>
-              <CheckCircleTwoTone   twoToneColor='green' onClick={() => { setIsEdit(!isEdit) 
-                }} style={{ fontSize: "20px" }} />
-            </div>
+            <FolderFilled style={{ fontSize: "200px", color: 'gray' }} />
+            <div style={{ display: 'flex', width: '70%', margin: '0 auto' }}>
+              <Space direction="vertical">
+                <Input placeholder='Название' value={folderName} onChange={(e) => setFolderName(e.target.value)} />
 
+                <Space direction="horizontal">
+                  <Input
+                    onChange={(e) => setDate(e.target.value)}
+                    value={date}
+                    placeholder='Дата'
+                  />
+                  <CheckCircleTwoTone twoToneColor='green' onClick={() => {
+                    setIsEdit(!isEdit)
+                  }} style={{ fontSize: "20px" }} />
+                </Space>
+              </Space>
+            </div>
           </div>
           :
-          <div>
+          <Space direction='vertical'>
+            
+              <FolderFilled style={{ fontSize: "200px", color: 'gray' }} />
 
-            <div><FolderFilled style={{ fontSize: "200px", color: 'gray' }} /></div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <div className='content-folder'>
-                  <div>
-                    {
-                      folderName 
+
+              <Space className='content-folder' direction="vertical">
+                <Space direction="horizontal">
+                  {
+                    folderName
                       ?
-                      <span>{folderName}</span>
+                      { folderName }
                       :
                       <span>Название</span>
-                    }
-                  
-                    
-                    </div>
+                  }
+                  <EditOutlined onClick={() => { setIsEdit(!isEdit) }} style={{ fontSize: "20px" }} />
 
-                  <div>
-                    {
-                      date 
-                      ?
-                      <span>{date}</span>
-                      :
-                      <span>Дата</span>
-                    }
-                    </div>  
-              </div>
-              <EditOutlined  onClick={() => { setIsEdit(!isEdit) }} style={{ fontSize: "20px" }} />
+                </Space>
+                {
+                  date
+                    ?
+                    { date }
+                    :
+                    <span>Дата</span>
+                }
+              </Space>
+
             </div>
-
-          </div>
+          </Space>
 
       }
 
