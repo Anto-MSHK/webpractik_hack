@@ -1,0 +1,15 @@
+.file-main{
+    display: flex;
+    flex-direction: column;
+    width: fit-content; 
+    align-items: center;
+
+}
+
+.content-file{
+   display: flex;
+    justify-content: center;
+    width: 200px;
+    padding-left: 20px;
+}
+
