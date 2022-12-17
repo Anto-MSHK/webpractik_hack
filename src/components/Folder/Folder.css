@@ -1,23 +1,15 @@
 .folder-main{
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    width: fit-content; 
+    align-items: center;
+
 }
 
 .content-folder{
-    margin: 0 auto;
+   display: flex;
     justify-content: center;
- 
-    gap: 5px;
-
+    width: 200px;
+    padding-left: 20px;
 }
 
-
-.edit-folder{
-    display: flex;
-    flex-direction: column;
-
-    gap: 5px;
-    justify-content: space-between;
-
-}

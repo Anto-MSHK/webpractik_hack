@@ -32,7 +32,6 @@ export const BreadCrumbs = () => {
                             <Breadcrumb.Item>Главная</Breadcrumb.Item>
                             <Breadcrumb.Item><Link to = '/'>Документы</Link></Breadcrumb.Item>
                             <Breadcrumb.Item><Link to = '/employees'>Сотрудники</Link></Breadcrumb.Item>
-                        
                         </Breadcrumb>
                     </div>
                     <div>

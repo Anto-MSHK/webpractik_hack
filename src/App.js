@@ -7,7 +7,8 @@ import {
 import { Layout, theme, Card, Button } from "antd";
 import { Router } from "./Router";
 import { BreadCrumbs } from "./components/breadCrumbs/breadCrumbs";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
+
 
 const { Header, Content } = Layout;
 const items1 = ["1", "2", "3"].map((key) => ({
@@ -54,6 +55,7 @@ const App = () => {
           
           }}
         >
+        
           <BreadCrumbs />
           <Card style={{ width: 'fit-content', margin: '0 auto'}}>
             <Content
