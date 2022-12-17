@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   Breadcrumb,
   Button,
@@ -18,54 +18,47 @@ import { useCreateFolderMutation } from "../../store/services/folderService";
 
 const { Search } = Input;
 
-
-
-
-
 export const BreadCrumbs = () => {
-  const [folderName, setFolderName] = useState("");
-  const [date, setDate] = useState("");
+  const [addFolder] = useCreateFolderMutation();
 
-   const [addFolder, {isError}]=useCreateFolderMutation()
-   
-/*    const navigate = useNavigate(); */
-   const   createFolder = async() => {
+  /*    const navigate = useNavigate(); */
+  const createFolder = async (fieldsValue) => {
     addFolder({
-    name: folderName, 
-    description: 'test',
-   })
-   }
-  const onFinish = (fieldsValue) => {
-   
-    setFolderName(fieldsValue['folderName'])
-    setDate(fieldsValue['date'])
-    createFolder()
-    console.log("Received values of form: ", fieldsValue);
+      name: fieldsValue.folderName,
+      description: fieldsValue.folderDescription,
+      isHidden: fieldsValue.isHidden,
+    }).unwrap();
   };
-  
+  const onFinish = (fieldsValue) => {
+    createFolder(fieldsValue);
+  };
+
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-  
+
   const content = (
     <div style={{ display: "flex", flexDirection: "column", rowGap: "5px" }}>
-  
-      <div style={{width: '200px'}} >
-  
+      <div style={{ width: "200px" }}>
         <Form
-  
           name="basic"
           initialValues={{ remember: true }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
-  
-          <div style={{ display: "flex", flexDirection: "column", gap: '5px', height: 'fit-content'}}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "5px",
+              height: "fit-content",
+            }}
+          >
             <Form.Item
               style={{ margin: "2px" }}
               name="folderName"
-              label = 'Название'
+              label="Название"
               rules={[
                 {
                   required: true,
@@ -80,9 +73,7 @@ export const BreadCrumbs = () => {
                       return Promise.resolve();
                     }
                     return Promise.reject(
-                      new Error(
-                        "Название должно содержать от 5 до 20 символов"
-                      )
+                      new Error("Название должно содержать от 5 до 20 символов")
                     );
                   },
                 }),
@@ -91,18 +82,32 @@ export const BreadCrumbs = () => {
               <Input placeholder="Название" />
             </Form.Item>
 
-            <Form.Item label = 'Файл'>
-         
-              <Upload>
-                <Button>Click to Upload</Button>
-              </Upload>
-  
+            <Form.Item
+              style={{ margin: "2px" }}
+              name="folderDescription"
+              label="Описание"
+              rules={[
+                {
+                  required: false,
+                },
+              ]}
+            >
+              <Input placeholder="Описание" />
             </Form.Item>
-  
-            <Form.Item>
+
+            <Form.Item
+              name="isHidden"
+              valuePropName="checked"
+              label="Обязательно"
+              rules={[
+                {
+                  required: false,
+                },
+              ]}
+            >
               <Checkbox>Доступ</Checkbox>
             </Form.Item>
-  
+
             <Form.Item
               style={{ margin: "0" }}
               wrapperCol={{ offset: 8, span: 16 }}
@@ -112,17 +117,10 @@ export const BreadCrumbs = () => {
               </Button>
             </Form.Item>
           </div>
-  
         </Form>
-  
       </div>
-  
-  
-  
-  
     </div>
   );
-
 
   return (
     <div className={"breadCrumbs-main"}>

@@ -1,11 +1,10 @@
-
 import React from "react";
 import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
 import { Avatar, List, Space } from "antd";
 import "./MainAdminPage.css";
-import { Folder } from "../../components/Folder/Folder";
-import { BreadCrumbs } from "../../components/breadCrumbs/breadCrumbs";
+import { Folder } from "../../Components/Folder/Folder";
 import { useGetFoldersQuery } from "../../store/services/folderService";
+import { BreadCrumbs } from "../../Components/breadCrumbs/breadCrumbs";
 const data = Array.from({
   length: 23,
 }).map((_, i) => ({
@@ -29,10 +28,15 @@ export const Main = () => {
   console.log(data);
   return (
     <div className={"mainAdmpage-main"}>
+      <BreadCrumbs />
       {!isLoading &&
         data &&
         data.map((folder) => (
-          <Folder name={folder.name} createDate={folder.createDate} id = {folder._id}/>
+          <Folder
+            name={folder.name}
+            createDate={folder.createDate}
+            id={folder._id}
+          />
         ))}
     </div>
   );

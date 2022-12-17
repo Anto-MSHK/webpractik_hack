@@ -3,12 +3,14 @@ import {
   EditOutlined,
   CheckCircleFilled,
   CheckCircleTwoTone,
+  CloseOutlined,
 } from "@ant-design/icons";
 import { Button, Input, Space } from "antd";
 import Form from "antd/es/form/Form";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { useDeleteFolderMutation } from "../../store/services/folderService";
 import { setFolderId } from "../../store/slices/folderSlice";
 import "./Folder.css";
 
@@ -17,7 +19,7 @@ export const Folder = ({ name, createDate, id }) => {
   const [folderName, setFolderName] = useState("");
   const [date, setDate] = useState("");
   const [form] = Form.useForm();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const onFinish = (fieldsValue) => {
     setIsEdit(!isEdit);
     setDate(fieldsValue["date"]);
@@ -29,10 +31,12 @@ export const Folder = ({ name, createDate, id }) => {
     console.log("Failed:", errorInfo);
   };
 
+  const [deleteFolder] = useDeleteFolderMutation();
+
   return (
-    <div onClick={()=> dispatch(setFolderId(id))} className="folder-main">
+    <div className="folder-main">
       <div style={{ width: "180px", height: "140px" }}>
-        <Link to={`/folders/${name}`}>
+        <Link to={`/folders/${id}`}>
           {" "}
           {/* <FolderFilled style={{ fontSize: "200px", color: 'gray' }} /> */}
           <div className="folderFigure">
@@ -160,16 +164,25 @@ export const Folder = ({ name, createDate, id }) => {
             style={{ display: "flex", gap: "5px" }}
           >
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <h1 style={{ padding: 0, margin: 0, fontSize: 20 }}>{name}</h1>
-
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <h1 style={{ padding: 0, margin: 0, fontSize: 20 }}>{name}</h1>
+                <div>
+                  <EditOutlined
+                    onClick={() => {
+                      setIsEdit(!isEdit);
+                    }}
+                    style={{ fontSize: "20px" }}
+                  />
+                  <CloseOutlined
+                    onClick={() => {
+                      deleteFolder(id).unwrap();
+                    }}
+                    style={{ fontSize: "20px" }}
+                  />
+                </div>
+              </div>
               <div>{createDate}</div>
             </div>
-            <EditOutlined
-              onClick={() => {
-                setIsEdit(!isEdit);
-              }}
-              style={{ fontSize: "20px" }}
-            />
           </div>
         )}
       </div>

@@ -6,10 +6,7 @@ import {
 } from "@ant-design/icons";
 import { Layout, theme, Card, Button } from "antd";
 import { Router } from "./Router";
-import { BreadCrumbs } from "./components/breadCrumbs/breadCrumbs";
-import { Link } from "react-router-dom";
-import { Head } from "./components/head/Head";
-
+import { Head } from "./Components/head/Head";
 
 const { Header, Content } = Layout;
 const items1 = ["1", "2", "3"].map((key) => ({
