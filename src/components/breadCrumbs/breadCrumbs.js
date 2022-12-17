@@ -21,6 +21,7 @@ const { Search } = Input;
 export const BreadCrumbs = () => {
   const [addFolder] = useCreateFolderMutation();
 
+<<<<<<< HEAD
   /*    const navigate = useNavigate(); */
   const createFolder = async (fieldsValue) => {
     addFolder({
@@ -29,6 +30,18 @@ export const BreadCrumbs = () => {
       isHidden: fieldsValue.isHidden,
     }).unwrap();
   };
+=======
+   const [addFolder, {isError}]=useCreateFolderMutation()
+   
+/*    const navigate = useNavigate(); */
+   const   createFolder = async() => {
+      addFolder({
+    name: folderName, 
+    description: 'test',
+    createDate: date,
+   })
+   }
+>>>>>>> d50c116746121ab7784a9e06f8895d8cbab00703
   const onFinish = (fieldsValue) => {
     createFolder(fieldsValue);
   };

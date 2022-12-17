@@ -21,6 +21,7 @@ export const Folder = ({ name, createDate, id }) => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const onFinish = (fieldsValue) => {
+    
     setIsEdit(!isEdit);
     setDate(fieldsValue["date"]);
     setFolderName(fieldsValue["folderName"]);
