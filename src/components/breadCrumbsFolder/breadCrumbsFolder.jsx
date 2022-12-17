@@ -39,8 +39,8 @@ export const BreadCrumbsFolder = () => {
   };
 
   const content = (
-    <div style={{ display: "flex", flexDirection: "column", rowGap: "5px" }}>
-      <div style={{ width: "200px" }}>
+    <div style={{ display: "flex", flexDirection: "column", rowGap: "5px", alignItems:'center'}}>
+ 
         <Form
           name="basic"
           initialValues={{ remember: true }}
@@ -57,6 +57,8 @@ export const BreadCrumbsFolder = () => {
             }}
           >
             <Form.Item
+            wrapperCol={{ offset: 1, span: 25 }}
+            
               label="Название"
               name="folderName"
               rules={[
@@ -82,16 +84,27 @@ export const BreadCrumbsFolder = () => {
               <Input />
             </Form.Item>
 
-            <Form.Item label="Описание">
+            <Form.Item 
+            label="Описание"
+            wrapperCol={{ offset: 2, span: 25 }}
+            >
               <Input />
             </Form.Item>
 
             <Form.Item label="Скрыть папку">
               <Checkbox />
             </Form.Item>
+
+            <Form.Item
+              wrapperCol={{ offset: 8, span: 16 }}
+            >
+              <Button type="primary" htmlType="submit">
+                Создать
+              </Button>
+            </Form.Item>
           </div>
         </Form>
-      </div>
+     
     </div>
   );
 

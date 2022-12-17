@@ -30,17 +30,19 @@ export const Main = () => {
   return (
     <div className={"mainAdmpage-main"}>
       <BreadCrumbsFolder />
-     
+     <div className="mainAdmpage-content">
       {!isLoading &&
-        data &&
-        data.map((folder, index) => (
-          <Folder 
-            key={folder.name + index}
-            name={folder.name}
-            createDate={folder.createDate}
-            id={folder._id}
-          />
-        ))}
+          data &&
+          data.map((folder, index) => (
+            <Folder 
+              key={folder.name + index}
+              name={folder.name}
+              createDate={folder.createDate}
+              id={folder._id}
+            />
+          ))}
+     </div>
+    
     </div>
   );
 };

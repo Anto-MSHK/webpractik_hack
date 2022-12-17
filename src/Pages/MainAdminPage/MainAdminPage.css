@@ -5,3 +5,7 @@
   column-gap: 100px;
   flex-wrap: wrap;
 }
+
+.mainAdmpage-content{
+  display: flex;
+}
