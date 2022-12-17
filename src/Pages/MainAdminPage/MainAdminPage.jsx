@@ -2,9 +2,10 @@ import React from "react";
 import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
 import { Avatar, List, Space } from "antd";
 import "./MainAdminPage.css";
-import { Folder } from "../../Components/Folder/Folder";
+import { Folder } from "../../components/Folder/Folder";
 import { useGetFoldersQuery } from "../../store/services/folderService";
-import { BreadCrumbsFolder } from "../../Components/breadCrumbsFolder/breadCrumbsFolder";
+import { BreadCrumbsFolder } from "../../components/breadCrumbsFolder/breadCrumbsFolder";
+
 const data = Array.from({
   length: 23,
 }).map((_, i) => ({
@@ -29,10 +30,12 @@ export const Main = () => {
   return (
     <div className={"mainAdmpage-main"}>
       <BreadCrumbsFolder />
+     
       {!isLoading &&
         data &&
-        data.map((folder) => (
-          <Folder
+        data.map((folder, index) => (
+          <Folder 
+            key={folder.name + index}
             name={folder.name}
             createDate={folder.createDate}
             id={folder._id}

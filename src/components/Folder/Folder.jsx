@@ -10,11 +10,14 @@ import Form from "antd/es/form/Form";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { useDeleteFolderMutation } from "../../store/services/folderService";
+import { useDeleteFolderMutation, useGetFolderFilesQuery} from "../../store/services/folderService";
 import { setFolderId } from "../../store/slices/folderSlice";
 import "./Folder.css";
+import { FileIcon } from '@drawbotics/file-icons';
+import '@drawbotics/file-icons/dist/style.css';
 
 export const Folder = ({ name, createDate, id }) => {
+  const { data: files, isFetching } = useGetFolderFilesQuery(id);
   const [isEdit, setIsEdit] = useState(false);
   const [folderName, setFolderName] = useState("");
   const [date, setDate] = useState("");
@@ -36,35 +39,24 @@ export const Folder = ({ name, createDate, id }) => {
 
   return (
     <div className="folder-main">
-      <div style={{ width: "180px", height: "140px" }}>
+      <div style={{ width: "180px", height: "140px", marginTop: '30px' }}>
         <Link to={`/folders/${id}`}>
           {" "}
           {/* <FolderFilled style={{ fontSize: "200px", color: 'gray' }} /> */}
           <div className="folderFigure">
             <div className="folderTrapezoid"></div>
             <div className="folderSquare">
-              <div
-                style={{
-                  width: "30px",
-                  height: "30px",
-                  backgroundColor: "white",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "30px",
-                  height: "30px",
-                  backgroundColor: "white",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "30px",
-                  height: "30px",
-                  backgroundColor: "white",
-                }}
-              ></div>
-              <span style={{ color: "white" }}>Антон</span>
+              <div>
+                  {
+                    files
+                     &&
+                   files.map((file, index)=> (
+                      <FileIcon key={file.name + index} file = {file.extension}/>
+                    ))
+                  }
+   
+              </div>
+           
             </div>
           </div>
         </Link>
@@ -142,6 +134,7 @@ export const Folder = ({ name, createDate, id }) => {
                   >
                     <Input value={date} placeholder="Дата: (дд.мм.гггг)" />
                     {/*   <DatePicker value={date} showTime format="YYYY-MM-DD HH:mm:ss" /> */}
+                    
                   </Form.Item>
                 </div>
 

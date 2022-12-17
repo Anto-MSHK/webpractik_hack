@@ -9,7 +9,8 @@ import { Button, Form, Input, Space, DatePicker } from 'antd'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './File.css'
-
+import { FileIcon } from '@drawbotics/file-icons';
+import '@drawbotics/file-icons/dist/style.css';
 
 const FileComponent = ({name, extension, url, _id}) => {
 
@@ -60,11 +61,8 @@ const FileComponent = ({name, extension, url, _id}) => {
   return (
 
     <div className='file-main'>
-      <div style={{ width: '180px', height: '180px' }}>
-        <Link to='/file'>
-          {' '}
-          <FileFilled  style={{ fontSize: '180px', color: 'gray' }} />
-        </Link>
+      <div style={{marginTop:'30px'}}>
+          <FileIcon  size = 'large' file = {extension}/>
       </div>
 
       <div
@@ -134,15 +132,15 @@ const FileComponent = ({name, extension, url, _id}) => {
           </div>
         ) : (
           <div className='content-file' style={{ display: 'flex', gap: '5px' }}>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              {name 
+            <div style={{ display: 'flex' }}>
+              {
+              name 
               ? 
               <div>{name}.{extension}</div> 
               : 
               <span>Название</span>}
         
-       <Button onClick={(e)=> downLoadClickHandler(e)} icon={<DownloadOutlined />} />
-
+           
             </div>
             <EditOutlined
               onClick={() => {
@@ -150,6 +148,7 @@ const FileComponent = ({name, extension, url, _id}) => {
               }}
               style={{ fontSize: '20px' }}
             />
+                <Button onClick={(e)=> downLoadClickHandler(e)} icon={<DownloadOutlined />} />
           </div>
         )}
       </div>
