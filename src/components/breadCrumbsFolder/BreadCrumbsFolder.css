@@ -1,0 +1,9 @@
+.breadCrumbs-main {
+    display: flex;
+    flex-direction: column;
+}
+
+.breadCrumbs-maincard {
+    flex-direction: row;
+    justify-content: space-between;
+}

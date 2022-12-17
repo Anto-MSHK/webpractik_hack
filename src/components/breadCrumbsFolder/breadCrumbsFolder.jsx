@@ -18,10 +18,9 @@ import { useCreateFolderMutation } from "../../store/services/folderService";
 
 const { Search } = Input;
 
-export const BreadCrumbs = () => {
+export const BreadCrumbsFolder = () => {
   const [addFolder] = useCreateFolderMutation();
 
-<<<<<<< HEAD
   /*    const navigate = useNavigate(); */
   const createFolder = async (fieldsValue) => {
     addFolder({
@@ -30,18 +29,7 @@ export const BreadCrumbs = () => {
       isHidden: fieldsValue.isHidden,
     }).unwrap();
   };
-=======
-   const [addFolder, {isError}]=useCreateFolderMutation()
-   
-/*    const navigate = useNavigate(); */
-   const   createFolder = async() => {
-      addFolder({
-    name: folderName, 
-    description: 'test',
-    createDate: date,
-   })
-   }
->>>>>>> d50c116746121ab7784a9e06f8895d8cbab00703
+
   const onFinish = (fieldsValue) => {
     createFolder(fieldsValue);
   };
@@ -67,69 +55,7 @@ export const BreadCrumbs = () => {
               gap: "5px",
               height: "fit-content",
             }}
-          >
-            <Form.Item
-              style={{ margin: "2px" }}
-              name="folderName"
-              label="Название"
-              rules={[
-                {
-                  required: true,
-                  message: "Обязательное поле",
-                },
-                () => ({
-                  validator(_, value) {
-                    if (
-                      !value ||
-                      value.match(/^([а-яА-яa-zA-z“№:()-_.]{5,20})$/)
-                    ) {
-                      return Promise.resolve();
-                    }
-                    return Promise.reject(
-                      new Error("Название должно содержать от 5 до 20 символов")
-                    );
-                  },
-                }),
-              ]}
-            >
-              <Input placeholder="Название" />
-            </Form.Item>
-
-            <Form.Item
-              style={{ margin: "2px" }}
-              name="folderDescription"
-              label="Описание"
-              rules={[
-                {
-                  required: false,
-                },
-              ]}
-            >
-              <Input placeholder="Описание" />
-            </Form.Item>
-
-            <Form.Item
-              name="isHidden"
-              valuePropName="checked"
-              label="Обязательно"
-              rules={[
-                {
-                  required: false,
-                },
-              ]}
-            >
-              <Checkbox>Доступ</Checkbox>
-            </Form.Item>
-
-            <Form.Item
-              style={{ margin: "0" }}
-              wrapperCol={{ offset: 8, span: 16 }}
-            >
-              <Button size="small" type="primary" htmlType="submit">
-                Создать
-              </Button>
-            </Form.Item>
-          </div>
+          ></div>
         </Form>
       </div>
     </div>

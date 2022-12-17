@@ -4,7 +4,7 @@ import { Avatar, List, Space } from "antd";
 import "./MainAdminPage.css";
 import { Folder } from "../../Components/Folder/Folder";
 import { useGetFoldersQuery } from "../../store/services/folderService";
-import { BreadCrumbs } from "../../Components/breadCrumbs/breadCrumbs";
+import { BreadCrumbsFolder } from "../../Components/breadCrumbsFolder/breadCrumbsFolder";
 const data = Array.from({
   length: 23,
 }).map((_, i) => ({
@@ -28,7 +28,7 @@ export const Main = () => {
   console.log(data);
   return (
     <div className={"mainAdmpage-main"}>
-      <BreadCrumbs />
+      <BreadCrumbsFolder />
       {!isLoading &&
         data &&
         data.map((folder) => (

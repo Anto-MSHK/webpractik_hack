@@ -1,13 +1,12 @@
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { BreadCrumbs } from "./Components/breadCrumbs/breadCrumbs";
-import { FolderContent } from "./Components/breadCrumbs/FolderContent/FolderContent";
 import Employees from "./Components/Employees/Employees";
 
 import LoginForm from "./Pages/AuthPage/LoginFrom";
 import RegisterForm from "./Pages/AuthPage/RegisterForm";
 import { Main } from "./Pages/MainAdminPage/MainAdminPage";
 import { getRole, getToken } from "./store/services/tokenService";
+import { FolderContent } from "./Components/FolderContent/FolderContent";
 
 export const Router = () => {
   const select = useSelector(getToken());
@@ -39,14 +38,3 @@ export const Router = () => {
     );
   }
 };
-
-//   <div>
-//     <Routes>
-//       <Route path="/" element={<Main />} />
-//       <Route path="/folder" element={<Folder />} />
-//       <Route path="/employees" element={<Employees />} />
-//       <Route path="/login" element={<LoginForm />} />
-//       <Route path="/registration" element={<RegisterForm />}></Route>
-//     </Routes>
-//   </div>
-// );
