@@ -1,23 +1,22 @@
-.folder-main{
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
+.folder-main {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  background-color: red;
+  max-width: 200px;
 }
 
-.content-folder{
-    margin: 0 auto;
-    justify-content: center;
- 
-    gap: 5px;
+.content-folder {
+  margin: 0 auto;
+  justify-content: center;
 
+  gap: 5px;
 }
 
+.edit-folder {
+  display: flex;
+  flex-direction: column;
 
-.edit-folder{
-    display: flex;
-    flex-direction: column;
-
-    gap: 5px;
-    justify-content: space-between;
-
+  gap: 5px;
+  justify-content: space-between;
 }
