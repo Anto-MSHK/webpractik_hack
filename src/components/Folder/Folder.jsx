@@ -1,6 +1,7 @@
 import { FolderFilled, EditOutlined, CheckCircleTwoTone } from '@ant-design/icons'
 import { Button, Input, Space } from 'antd'
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import './Folder.css'
 
 export const Folder = () => {
@@ -16,7 +17,7 @@ export const Folder = () => {
           ?
 
           <div>
-            <FolderFilled style={{ fontSize: "200px", color: 'gray' }} />
+          <Link to = '/folder'> <FolderFilled style={{ fontSize: "200px", color: 'gray' }} /></Link> 
             <div style={{ display: 'flex', width: '70%', margin: '0 auto' }}>
               <Space direction="vertical">
                 <Input placeholder='Название' value={folderName} onChange={(e) => setFolderName(e.target.value)} />
@@ -37,7 +38,7 @@ export const Folder = () => {
           :
           <Space direction='vertical'>
             
-              <FolderFilled style={{ fontSize: "200px", color: 'gray' }} />
+            <Link to = '/folder'> <FolderFilled style={{ fontSize: "200px", color: 'gray' }} /></Link> 
 
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
 

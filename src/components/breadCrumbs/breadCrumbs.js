@@ -1,6 +1,7 @@
 import React from 'react';
 import {Breadcrumb, Button, Card, Checkbox, Input, Popover, Segmented, Upload} from "antd";
 import { FileAddFilled } from '@ant-design/icons'
+import { Link } from 'react-router-dom';
 
 const {Search} = Input;
 
@@ -28,14 +29,10 @@ export const BreadCrumbs = () => {
                 }}>
                     <div>
                         <Breadcrumb>
-                            <Breadcrumb.Item>Home</Breadcrumb.Item>
-                            <Breadcrumb.Item>
-                                <a href="">Application Center</a>
-                            </Breadcrumb.Item>
-                            <Breadcrumb.Item>
-                                <a href="">Application List</a>
-                            </Breadcrumb.Item>
-                            <Breadcrumb.Item>An Application</Breadcrumb.Item>
+                            <Breadcrumb.Item>Главная</Breadcrumb.Item>
+                            <Breadcrumb.Item><Link to = '/'>Документы</Link></Breadcrumb.Item>
+                            <Breadcrumb.Item><Link to = '/employees'>Сотрудники</Link></Breadcrumb.Item>
+                        
                         </Breadcrumb>
                     </div>
                     <div>
