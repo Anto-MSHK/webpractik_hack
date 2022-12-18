@@ -2,9 +2,9 @@ import React from "react";
 import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
 import { Avatar, List, Space } from "antd";
 import "./MainAdminPage.css";
-import { Folder } from "../../Components/Folder/Folder";
+import { Folder } from "../../components/Folder/Folder";
 import { useGetFoldersQuery } from "../../store/services/folderService";
-import { BreadCrumbsFolder } from "../../Components/breadCrumbsFolder/breadCrumbsFolder";
+import { BreadCrumbsFolder } from "../../components/breadCrumbsFolder/breadCrumbsFolder";
 
 const data = Array.from({
   length: 23,
@@ -30,6 +30,7 @@ export const Main = () => {
   return (
     <div className={"mainAdmpage-main"}>
       <BreadCrumbsFolder />
+    <div style={{display: 'flex'}}>
 
       {!isLoading &&
         data &&
@@ -41,6 +42,7 @@ export const Main = () => {
             id={folder._id}
           />
         ))}
+    </div>
     </div>
   );
 };

@@ -46,12 +46,14 @@ export const Folder = ({ name, createDate, id }) => {
           <div className="folderFigure">
             <div className="folderTrapezoid"></div>
             <div className="folderSquare">
-              <div style={{display: 'flex', width:'100%', flexWrap: 'wrap', gap:'5px',justifyContent: "space-evenly"}}>
+              <div style={{display: 'flex', width:'100%', flexWrap: 'wrap-reverse', gap:'5px',justifyContent: "space-between"}}>
                   {
                     files
                      &&
                    files.map((file, index)=> (
-                      <FileIcon key={file.name + index} file = {file.extension}/>
+                        index <= 6 
+                        &&
+                        <FileIcon key={file.name + index} file = {file.extension}/>
                     ))
                   }
    
