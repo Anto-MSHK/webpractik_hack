@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Breadcrumb,
   Button,
@@ -15,45 +15,20 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { useCreateFolderMutation } from "../../store/services/folderService";
-import './BreadCrumbsFolder.css'
 const { Search } = Input;
 
-export const BreadCrumbsFolder = ({ folders, onChange}) => {
-  const [searchedFolder, setSearchedFolder] = useState([])
-  const [searchQuery, setSearchQuery] = useState('')
+export const BreadCrumbsEmployees = () => {
+
 
  
 
-  const onSearch = (searchQuery) => {
-   
-    if (searchQuery) {
-       setSearchedFolder([...folders].filter(folder => folder.name && folder.name.toLowerCase().includes(searchQuery.toLocaleLowerCase())))
-
-    } else folders ? setSearchedFolder([folders]) : setSearchedFolder([])
-   
-    onChange(searchedFolder)
-
-}
-
-  const [addFolder] = useCreateFolderMutation();
-  /*    const navigate = useNavigate(); */
-  const createFolder = async (fieldsValue) => {
-    addFolder({
-      name: fieldsValue.folderName,
-      description: fieldsValue.folderDescription,
-      isHidden: fieldsValue.isHidden,
-    }).unwrap();
-  };
-
   const onFinish = (fieldsValue) => {
-    createFolder(fieldsValue);
+   /*  createFolder(fieldsValue); */
   };
 
-  const onFinishFailed = (errorInfo) => {
+  /* const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-
-
   const content = (
     <div style={{ display: "flex", flexDirection: "column", rowGap: "5px" }}>
       <div style={{ width: "200px" }}>
@@ -137,7 +112,8 @@ export const BreadCrumbsFolder = ({ folders, onChange}) => {
         </Form>
       </div>
     </div>
-  );
+  ); */
+
   return (
     <div className="breadCrumbs-main">
       <Card>
@@ -161,27 +137,19 @@ export const BreadCrumbsFolder = ({ folders, onChange}) => {
             </Breadcrumb>
           </div>
           <div>
-            <Input placeholder="Поиск..."  onChange={ (e) => onSearch(e.target.value)} />
+            <Search placeholder="Поиск" />
           </div>
           <div>
             <Segmented
               options={[
-                "По дням",
-                "По неделям",
-                "По месяцам",
-                "По кварталам",
-                "По годам",
+                "Админы",
+                "Сотрудники",
+            
               ]}
               style={{ marginLeft: "10px" }}
             />
           </div>
-          <div className={"breadCrumbs-button"}>
-            <Popover content={content} trigger="click">
-              <Button type={"primary"}>
-                <FileAddFilled />
-              </Button>
-            </Popover>
-          </div>
+          
         </div>
       </Card>
     </div>

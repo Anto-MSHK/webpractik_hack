@@ -3,8 +3,10 @@ import React from 'react';
 
 const Employee = ({name, email, role}) => {
     return (
+       
+
         <Card 
-        style={{margin: '10px'}}
+        style={{margin: '10px', width: '300px'}}
         title = {
             <>
                 {name}
@@ -14,6 +16,7 @@ const Employee = ({name, email, role}) => {
                 <div>Role: {role}</div>
             
         </Card>
+       
     );
 }
 

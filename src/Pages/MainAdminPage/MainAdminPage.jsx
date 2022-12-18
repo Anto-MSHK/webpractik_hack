@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Space } from "antd";
 import "./MainAdminPage.css";
@@ -28,18 +28,29 @@ const IconText = ({ icon, text }) => (
 
 export const Main = () => {
   const { data, errors, isLoading } = useGetFoldersQuery();
-  console.log(data);
+  const [folders, setFolders] = useState([])
+
+
+  useEffect(() => {
+    console.log(data);
+    setFolders(data)
+  }, [data]);
+
+  const handleSearchedFolder = (searchedFolders) => {
+    setFolders(searchedFolders)
+  }
+
   return (
     <div className="mainAdmpage-main">
-      <BreadCrumbsFolder />
+      <BreadCrumbsFolder onChange = {handleSearchedFolder} folders = {data} />
       <div style={{ display: "flex" }}>
         {
         isLoading 
         ?
         <Spinner text='Загружаем папки...' size = 'large'/>
         :
-          data &&
-          data.map((folder, index) => (
+          folders &&
+          folders.map((folder, index) => (
             <Folder
               key={folder.name + index}
               name={folder.name}
