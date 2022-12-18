@@ -1,5 +1,8 @@
 .login{
     display: flex;
     flex-direction: column;
-    width: max-content;
+    width: 400px;
+    margin: 0 auto;
+
+    align-content: center;
 }

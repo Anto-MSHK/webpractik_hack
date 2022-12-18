@@ -82,7 +82,7 @@ const RegisterForm = () => {
                 rules={[
                     {
                         required: true,
-                        message: 'Пожалуйста введите вашу электронную почту!',
+                        message: 'Пожалуйста, введите вашу электронную почту!',
                     },
                     () => ({
                         validator(_, value) {
@@ -103,7 +103,7 @@ const RegisterForm = () => {
                 label="Пароль"
                 name="password"
                 hasFeedback
-                rules={[{ required: true, message: 'Пожалуйста введите ваш пароль!' }]}
+                rules={[{ required: true, message: 'Пожалуйста, введите ваш пароль!' }]}
             >
 
                 < Input.Password prefix={<LockOutlined className="site-form-item-icon" />} />

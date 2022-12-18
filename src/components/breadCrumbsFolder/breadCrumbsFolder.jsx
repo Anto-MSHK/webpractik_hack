@@ -12,10 +12,10 @@ import {
 } from "antd";
 import { FileAddFilled } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
-import FormItem from "antd/es/form/FormItem";
+
 import { useDispatch } from "react-redux";
 import { useCreateFolderMutation } from "../../store/services/folderService";
-
+import './BreadCrumbsFolder.css'
 const { Search } = Input;
 
 export const BreadCrumbsFolder = () => {
@@ -122,7 +122,7 @@ export const BreadCrumbsFolder = () => {
     </div>
   );
   return (
-    <div className={"breadCrumbs-main"}>
+    <div className="breadCrumbs-main">
       <Card>
         <div
           style={{

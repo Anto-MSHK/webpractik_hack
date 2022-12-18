@@ -26,13 +26,19 @@ export const Head = () => {
         <Link to="/">
           <h1 style={{ color: "white" }}>Вебпрактик</h1>
         </Link>
-        {!userId ? (
+        {
+        !userId 
+         ?
+          (
           <Link style={{ color: "white" }} to="/login">
             <UserOutlined style={{ fontSize: "20px" }} />{" "}
             <Button ghost>Login/Register</Button>
           </Link>
-        ) : (
-          <Link style={{ color: "white" }} to="/login">
+        ) 
+        : 
+        currentUser &&
+        (
+          <Link style={{ color: "white" }} to={`user/${currentUser.name && currentUser.name}/${userId}`}>
             <UserOutlined style={{ fontSize: "20px" }} />{" "}
             <Button ghost>
               {isLoading ? "Загрузка..." : currentUser.email}
