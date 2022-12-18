@@ -27,9 +27,13 @@ export const BreadCrumbsFolder = ({ folders, onChange}) => {
   const onSearch = (searchQuery) => {
    
     if (searchQuery) {
+      console.log('Отработал поиск');
+      console.log(searchQuery)
+      console.log(folders);
        setSearchedFolder([...folders].filter(folder => folder.name && folder.name.toLowerCase().includes(searchQuery.toLocaleLowerCase())))
-
+       console.log(searchedFolder);
     } else folders ? setSearchedFolder([folders]) : setSearchedFolder([])
+ 
    
     onChange(searchedFolder)
 
