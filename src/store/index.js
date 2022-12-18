@@ -19,11 +19,13 @@ import { authAPI } from "./services/authService";
 import tokenReducer from "./services/tokenService";
 import { folderAPI } from "./services/folderService";
 import folderReducer from "./slices/folderSlice";
+import { fileAPI } from "./services/fileService";
 
 const rootReducer = combineReducers({
   [userAPI.reducerPath]: userAPI.reducer,
   [authAPI.reducerPath]: authAPI.reducer,
   [folderAPI.reducerPath]: folderAPI.reducer,
+  [fileAPI.reducerPath]: fileAPI.reducer,
   token: tokenReducer,
   folder: folderReducer,
 });
@@ -32,7 +34,7 @@ const persistConfig = {
   key: "root",
   version: 1,
   storage,
-  blacklist: [folderAPI.reducerPath],
+  blacklist: [folderAPI.reducerPath, fileAPI.reducerPath],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -45,7 +47,12 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat([userAPI.middleware, authAPI.middleware, folderAPI.middleware]),
+    }).concat([
+      userAPI.middleware,
+      authAPI.middleware,
+      folderAPI.middleware,
+      fileAPI.middleware,
+    ]),
 });
 
 export const persistor = persistStore(store);

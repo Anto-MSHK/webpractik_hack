@@ -14,7 +14,15 @@ export const fileAPI = createApi({
       transformResponse: (response) => response.result.folder,
       providesTags: (result) => ["Files"],
     }),
+    createFile: build.mutation({
+      query: (content) => ({
+        url: "upload",
+        method: "POST",
+        body: content,
+      }),
+      invalidatesTags: ["Files"],
+    }),
   }),
 });
 
-export const { useGetFilesQuery } = fileAPI;
+export const { useGetFilesQuery, useCreateFileMutation } = fileAPI;

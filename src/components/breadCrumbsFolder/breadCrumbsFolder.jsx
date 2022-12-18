@@ -37,10 +37,9 @@ export const BreadCrumbsFolder = () => {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-
   const content = (
-    <div style={{ display: "flex", flexDirection: "column", rowGap: "5px", alignItems:'center'}}>
- 
+    <div style={{ display: "flex", flexDirection: "column", rowGap: "5px" }}>
+      <div style={{ width: "200px" }}>
         <Form
           name="basic"
           initialValues={{ remember: true }}
@@ -57,10 +56,9 @@ export const BreadCrumbsFolder = () => {
             }}
           >
             <Form.Item
-            wrapperCol={{ offset: 1, span: 25 }}
-            
-              label="Название"
+              style={{ margin: "2px" }}
               name="folderName"
+              label="Название"
               rules={[
                 {
                   required: true,
@@ -70,44 +68,59 @@ export const BreadCrumbsFolder = () => {
                   validator(_, value) {
                     if (
                       !value ||
-                      value.match(/^([а-яА-яa-zA-z“№:()-_.]{7,30})$/)
+                      value.match(/^([а-яА-яa-zA-z“№:()-_.]{5,20})$/)
                     ) {
                       return Promise.resolve();
                     }
                     return Promise.reject(
-                      new Error("Название должно содержать от 7 до 30 символов")
+                      new Error("Название должно содержать от 5 до 20 символов")
                     );
                   },
                 }),
               ]}
             >
-              <Input />
-            </Form.Item>
-
-            <Form.Item 
-            label="Описание"
-            wrapperCol={{ offset: 2, span: 25 }}
-            >
-              <Input />
-            </Form.Item>
-
-            <Form.Item label="Скрыть папку">
-              <Checkbox />
+              <Input placeholder="Название" />
             </Form.Item>
 
             <Form.Item
+              style={{ margin: "2px" }}
+              name="folderDescription"
+              label="Описание"
+              rules={[
+                {
+                  required: false,
+                },
+              ]}
+            >
+              <Input placeholder="Описание" />
+            </Form.Item>
+
+            <Form.Item
+              name="isHidden"
+              valuePropName="checked"
+              label="Обязательно"
+              rules={[
+                {
+                  required: false,
+                },
+              ]}
+            >
+              <Checkbox>Доступ</Checkbox>
+            </Form.Item>
+
+            <Form.Item
+              style={{ margin: "0" }}
               wrapperCol={{ offset: 8, span: 16 }}
             >
-              <Button type="primary" htmlType="submit">
+              <Button size="small" type="primary" htmlType="submit">
                 Создать
               </Button>
             </Form.Item>
           </div>
         </Form>
-     
+      </div>
     </div>
   );
-
   return (
     <div className={"breadCrumbs-main"}>
       <Card>
