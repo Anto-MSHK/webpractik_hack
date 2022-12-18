@@ -19,11 +19,41 @@ import { useCreateFileMutation } from "../../store/services/fileService";
 const { message, Dragger } = Upload;
 const { Search } = Input;
 
-export const BreadCrumbsFile = ({ folder_id, folder_name }) => {
+export const BreadCrumbsFile = ({
+  folder_id,
+  folder_name,
+  files,
+  onChange,
+}) => {
   const [addFile] = useCreateFileMutation();
   const [file, setFile] = useState(null);
   /*    const navigate = useNavigate(); */
   const formData = new FormData();
+
+  const [searchedFiles, setSearchedFiles] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    onSearch();
+  }, [searchQuery]);
+
+  const onSearch = () => {
+    if (searchQuery) {
+      setSearchedFiles(
+        [...files].filter((files) =>
+          files.name
+            .toLowerCase()
+            .includes(searchQuery.toLocaleLowerCase().replace(" ", ""))
+        )
+      );
+      console.log(searchedFiles);
+    } else {
+      setSearchedFiles(files);
+    }
+
+    onChange(searchedFiles);
+  };
+
   const createFolder = async (fieldsValue) => {
     formData.append("name", fieldsValue.fileName);
     formData.append("description", fieldsValue.fileDescription);
@@ -179,7 +209,10 @@ export const BreadCrumbsFile = ({ folder_id, folder_name }) => {
             </Breadcrumb>
           </div>
           <div>
-            <Search placeholder="Поиск" />
+            <Input
+              placeholder="Поиск..."
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
           </div>
           <div>
             <Segmented

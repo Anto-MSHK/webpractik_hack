@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Breadcrumb,
   Button,
@@ -18,9 +18,30 @@ import { useCreateFolderMutation } from "../../store/services/folderService";
 import "./BreadCrumbsFolder.css";
 const { Search } = Input;
 
-export const BreadCrumbsFolder = () => {
-  const [addFolder] = useCreateFolderMutation();
+export const BreadCrumbsFolder = ({ folders, onChange}) => {
+  const [searchedFolder, setSearchedFolder] = useState([])
 
+
+ 
+
+  const onSearch = (searchQuery) => {
+   
+    if (searchQuery) {
+      console.log('Отработал поиск');
+      console.log(searchQuery)
+      console.log(folders);
+       setSearchedFolder([...folders].filter(folder => folder.name && folder.name.toLowerCase().includes(searchQuery.toLocaleLowerCase())))
+       console.log(searchedFolder);
+    } else 
+    {
+      folders ? setSearchedFolder([folders]) : setSearchedFolder([])
+    }
+   
+    onChange(searchedFolder)
+
+}
+
+  const [addFolder] = useCreateFolderMutation();
   /*    const navigate = useNavigate(); */
   const createFolder = async (fieldsValue) => {
     addFolder({
@@ -37,6 +58,8 @@ export const BreadCrumbsFolder = () => {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
+
   const content = (
     <div style={{ display: "flex", flexDirection: "column", rowGap: "5px" }}>
       <div style={{ width: "200px" }}>
@@ -143,7 +166,7 @@ export const BreadCrumbsFolder = () => {
             </Breadcrumb>
           </div>
           <div>
-            <Search placeholder="Поиск" />
+            <Input placeholder="Поиск..."  onChange={ (e) => onSearch(e.target.value)} />
           </div>
           <div>
             <Segmented
