@@ -13,9 +13,11 @@ import {
 import { FileAddFilled, UploadOutlined } from "@ant-design/icons";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import FormItem from "antd/es/form/FormItem";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useCreateFolderMutation } from "../../store/services/folderService";
 import { useCreateFileMutation } from "../../store/services/fileService";
+import { getUser } from "../../store/services/tokenService";
+import { useGetUserQuery } from "../../store/services/userService";
 const { message, Dragger } = Upload;
 const { Search } = Input;
 
@@ -25,6 +27,9 @@ export const BreadCrumbsFile = ({
   files,
   onChange,
 }) => {
+  const userId = useSelector(getUser());
+  const { data: currentUser, error, isLoading } = useGetUserQuery(userId);
+
   const [addFile] = useCreateFileMutation();
   const [file, setFile] = useState(null);
   /*    const navigate = useNavigate(); */
@@ -57,7 +62,7 @@ export const BreadCrumbsFile = ({
   const createFolder = async (fieldsValue) => {
     formData.append("name", fieldsValue.fileName);
     formData.append("description", fieldsValue.fileDescription);
-    formData.append("isHidden", fieldsValue.isHidden);
+    formData.append("isHidden", !fieldsValue.isHidden ? false : true);
     formData.append("folder_id", folder_id);
     formData.append("file", file);
     addFile(formData).unwrap();
@@ -147,14 +152,13 @@ export const BreadCrumbsFile = ({
             <Form.Item
               name="isHidden"
               valuePropName="checked"
-              label="Обязательно"
               rules={[
                 {
                   required: false,
                 },
               ]}
             >
-              <Checkbox>Доступ</Checkbox>
+              <Checkbox>Скрытый</Checkbox>
             </Form.Item>
 
             {/* <Form.Item
@@ -221,11 +225,13 @@ export const BreadCrumbsFile = ({
             />
           </div>
           <div className={"breadCrumbs-button"}>
-            <Popover content={content} trigger="click">
-              <Button type={"primary"}>
-                <FileAddFilled />
-              </Button>
-            </Popover>
+            {!isLoading && currentUser.role === "ADMIN" && (
+              <Popover content={content} trigger="click">
+                <Button type={"primary"}>
+                  <FileAddFilled />
+                </Button>
+              </Popover>
+            )}
           </div>
         </div>
       </Card>

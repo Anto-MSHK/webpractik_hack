@@ -13,33 +13,35 @@ import {
 import { FileAddFilled } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useCreateFolderMutation } from "../../store/services/folderService";
 import "./BreadCrumbsFolder.css";
+import { getUser } from "../../store/services/tokenService";
+import { useGetUserQuery } from "../../store/services/userService";
 const { Search } = Input;
 
-export const BreadCrumbsFolder = ({ folders, onChange}) => {
-  const [searchedFolder, setSearchedFolder] = useState([])
-
-
- 
+export const BreadCrumbsFolder = ({ folders, onChange }) => {
+  const [searchedFolder, setSearchedFolder] = useState([]);
 
   const onSearch = (searchQuery) => {
-   
     if (searchQuery) {
-      console.log('Отработал поиск');
-      console.log(searchQuery)
+      console.log("Отработал поиск");
+      console.log(searchQuery);
       console.log(folders);
-       setSearchedFolder([...folders].filter(folder => folder.name && folder.name.toLowerCase().includes(searchQuery.toLocaleLowerCase())))
-       console.log(searchedFolder);
-    } else 
-    {
-      folders ? setSearchedFolder([folders]) : setSearchedFolder([])
+      setSearchedFolder(
+        [...folders].filter(
+          (folder) =>
+            folder.name &&
+            folder.name.toLowerCase().includes(searchQuery.toLocaleLowerCase())
+        )
+      );
+      console.log(searchedFolder);
+    } else {
+      folders ? setSearchedFolder([folders]) : setSearchedFolder([]);
     }
-   
-    onChange(searchedFolder)
 
-}
+    onChange(searchedFolder);
+  };
 
   const [addFolder] = useCreateFolderMutation();
   /*    const navigate = useNavigate(); */
@@ -59,6 +61,8 @@ export const BreadCrumbsFolder = ({ folders, onChange}) => {
     console.log("Failed:", errorInfo);
   };
 
+  const userId = useSelector(getUser());
+  const { data: currentUser, error, isLoading } = useGetUserQuery(userId);
 
   const content = (
     <div style={{ display: "flex", flexDirection: "column", rowGap: "5px" }}>
@@ -121,14 +125,13 @@ export const BreadCrumbsFolder = ({ folders, onChange}) => {
             <Form.Item
               name="isHidden"
               valuePropName="checked"
-              label="Обязательно"
               rules={[
                 {
                   required: false,
                 },
               ]}
             >
-              <Checkbox>Доступ</Checkbox>
+              <Checkbox>Скрытый</Checkbox>
             </Form.Item>
 
             <Form.Item
@@ -160,13 +163,18 @@ export const BreadCrumbsFolder = ({ folders, onChange}) => {
               <Breadcrumb.Item>
                 <Link to="/folders">Документы</Link>
               </Breadcrumb.Item>
-              <Breadcrumb.Item>
-                <Link to="/employees">Сотрудники</Link>
-              </Breadcrumb.Item>
+              {!isLoading && currentUser.role === "ADMIN" && (
+                <Breadcrumb.Item>
+                  <Link to="/employees">Сотрудники</Link>
+                </Breadcrumb.Item>
+              )}
             </Breadcrumb>
           </div>
           <div>
-            <Input placeholder="Поиск..."  onChange={ (e) => onSearch(e.target.value)} />
+            <Input
+              placeholder="Поиск..."
+              onChange={(e) => onSearch(e.target.value)}
+            />
           </div>
           <div>
             <Segmented
@@ -175,11 +183,13 @@ export const BreadCrumbsFolder = ({ folders, onChange}) => {
             />
           </div>
           <div className={"breadCrumbs-button"}>
-            <Popover content={content} trigger="click">
-              <Button type={"primary"}>
-                <FileAddFilled />
-              </Button>
-            </Popover>
+            {!isLoading && currentUser.role === "ADMIN" && (
+              <Popover content={content} trigger="click">
+                <Button type={"primary"}>
+                  <FileAddFilled />
+                </Button>
+              </Popover>
+            )}
           </div>
         </div>
       </Card>

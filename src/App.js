@@ -8,7 +8,7 @@ import { Layout, theme, Card, Button } from "antd";
 import { Router } from "./Router";
 import { Head } from "./Components/head/Head";
 
-const { Header, Content } = Layout;
+const { Header, Content, Footer } = Layout;
 const items1 = ["1", "2", "3"].map((key) => ({
   key,
   label: `nav ${key}`,
@@ -58,6 +58,16 @@ const App = () => {
               <Router />
             </Content>
           </Card>
+          <div>
+            <p style={{ textAlign: "center" }}>Разработано командой Random()</p>
+            <p style={{ textAlign: "center" }}>
+              Если что-то не добавляется, после заполнения формы - перезагрузите
+              страницу :(
+            </p>
+            <p style={{ textAlign: "center" }}>
+              Если меняете аккаунт, перезагрузитесь на главной странице
+            </p>
+          </div>
         </Layout>
       </Layout>
     </Layout>

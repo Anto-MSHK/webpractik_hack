@@ -18,15 +18,19 @@ import {
 } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useCreateFolderMutation } from "../../store/services/folderService";
 import "./BreadCrumbsUsers.css";
 import { useSignUpMutation } from "../../store/services/authService";
+import { getUser } from "../../store/services/tokenService";
+import { useGetUserQuery } from "../../store/services/userService";
 const { Search } = Input;
 
 export const BreadCrumbsUser = () => {
   const [addUser] = useSignUpMutation();
   const [secretLink, setSecretLink] = useState("");
+  const userId = useSelector(getUser());
+  const { data: currentUser, error, isLoading } = useGetUserQuery(userId);
   /*    const navigate = useNavigate(); */
   const createFolder = async (fieldsValue) => {
     addUser({
@@ -174,11 +178,13 @@ export const BreadCrumbsUser = () => {
             <Search placeholder="Поиск" />
           </div>
           <div className={"breadCrumbs-button"}>
-            <Popover content={content} trigger="click">
-              <Button type={"primary"} onClick={() => setSecretLink("")}>
-                <PlusCircleFilled />
-              </Button>
-            </Popover>
+            {!isLoading && currentUser.role === "ADMIN" && (
+              <Popover content={content} trigger="click">
+                <Button type={"primary"} onClick={() => setSecretLink("")}>
+                  <PlusCircleFilled />
+                </Button>
+              </Popover>
+            )}{" "}
           </div>
         </div>
       </Card>
