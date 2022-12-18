@@ -49,7 +49,8 @@ export const Main = () => {
         ?
         <Spinner text='Загружаем папки...' size = 'large'/>
         :
-          folders &&
+          folders && folders.length &&
+      
           folders.map((folder, index) => (
             <Folder
               key={folder.name + index}
@@ -57,7 +58,9 @@ export const Main = () => {
               createDate={folder.createDate}
               id={folder._id}
             />
-          ))}
+          ))
+          
+          }
       </div>
     </div>
   );

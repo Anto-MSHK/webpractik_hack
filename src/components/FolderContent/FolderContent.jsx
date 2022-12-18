@@ -27,10 +27,10 @@ const handleSearchedFiles = (searchedUsers) => {
     <div className="folder_content">
       <BreadCrumbsFile onChange={handleSearchedFiles} files = {files} folder_id={id} />
       <div style={{ display: "flex", gap: "20px", marginTop: "20px", }}>
-        {searchedFiles ? (
-          searchedFiles.map((file) => <FileComponent {...file} />)
+        {searchedFiles && searchedFiles.length ? (
+          searchedFiles.map((file) => <FileComponent key={file._id} {...file} />)
         ) : (
-          <span>Пусто</span>
+          <h1 style={{margin: '0 auto'}}>Папка пуста</h1>
         )}
       </div>
     </div>

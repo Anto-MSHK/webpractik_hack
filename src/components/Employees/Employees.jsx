@@ -46,7 +46,7 @@ const Employees = () => {
                           <Spinner  text='Загружаем сотрудников...' size='large' />
                     </div>
                     :
-                    users.length ?
+                   users && users.length ?
                     users.map(employee => 
 
                         <Employee key={employee._id} {...employee} />
