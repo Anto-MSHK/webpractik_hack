@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState}from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useGetFolderFilesQuery } from "../../store/services/folderService";
@@ -9,12 +9,26 @@ import "./FolderContent.css";
 export const FolderContent = () => {
   const { id } = useParams();
   const { data: files, isFetching } = useGetFolderFilesQuery(id);
+
+  const [searchedFiles, setSearchedFiles] = useState([])
+
+
+useEffect(() => {
+  setSearchedFiles(files)
+}, [files]);
+
+const handleSearchedFiles = (searchedUsers) => {
+
+  setSearchedFiles(searchedUsers)
+  
+}
+
   return (
     <div className="folder_content">
-      <BreadCrumbsFile folder_id={id} />
+      <BreadCrumbsFile onChange={handleSearchedFiles} files = {files} folder_id={id} />
       <div style={{ display: "flex", gap: "20px", marginTop: "20px", }}>
-        {files ? (
-          files.map((file) => <FileComponent {...file} />)
+        {searchedFiles ? (
+          searchedFiles.map((file) => <FileComponent {...file} />)
         ) : (
           <span>Пусто</span>
         )}

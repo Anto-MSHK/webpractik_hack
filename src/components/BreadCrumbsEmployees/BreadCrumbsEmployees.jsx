@@ -17,27 +17,33 @@ import { useDispatch } from "react-redux";
 import { useCreateFolderMutation } from "../../store/services/folderService";
 const { Search } = Input;
 
-export const BreadCrumbsEmployees = () => {
+export const BreadCrumbsEmployees = ({onChange, users}) => {
 
     const [searchedUser, setSearchedUser] = useState([])
     const [searchQuery, setSearchQuery] = useState('')
-  
+    
    
-/*   
-    const onSearch = (searchQuery) => {
-     
+  useEffect(()=> {
+    onSearch()
+  },[searchQuery])
+  
+    const onSearch = () => {
+        
+
       if (searchQuery) {
-        console.log('Отработал поиск');
-        console.log(searchQuery)
-        console.log(folders);
-         setSearchedUser([...folders].filter(folder => folder.name && folder.name.toLowerCase().includes(searchQuery.toLocaleLowerCase())))
+       /*  console.log('Отработал поиск');
+        console.log(searchQuery) */
+    
+         setSearchedUser([...users].filter(user =>  user.name.toLowerCase().includes(searchQuery.toLocaleLowerCase().replace(' ',''))))
          console.log(searchedUser);
-      } else folders ? setSearchedUser([folders]) : setSearchedUser([])
-   
-     
+      } else {
+  /*       console.log('пустая');
+        console.log(users); */
+        setSearchedUser(users)
+    }
+
       onChange(searchedUser)
-  
-  } */
+  }
  
 
   const onFinish = (fieldsValue) => {
@@ -69,7 +75,7 @@ export const BreadCrumbsEmployees = () => {
             </Breadcrumb>
           </div>
           <div>
-            <Search placeholder="Поиск" />
+          <Input placeholder="Поиск..." value={searchQuery} onChange={ (e) => setSearchQuery(e.target.value)} />
           </div>
           <div>
             <Segmented

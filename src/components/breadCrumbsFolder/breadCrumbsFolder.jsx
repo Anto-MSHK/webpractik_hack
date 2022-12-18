@@ -20,7 +20,7 @@ const { Search } = Input;
 
 export const BreadCrumbsFolder = ({ folders, onChange}) => {
   const [searchedFolder, setSearchedFolder] = useState([])
-  const [searchQuery, setSearchQuery] = useState('')
+
 
  
 
@@ -32,8 +32,10 @@ export const BreadCrumbsFolder = ({ folders, onChange}) => {
       console.log(folders);
        setSearchedFolder([...folders].filter(folder => folder.name && folder.name.toLowerCase().includes(searchQuery.toLocaleLowerCase())))
        console.log(searchedFolder);
-    } else folders ? setSearchedFolder([folders]) : setSearchedFolder([])
- 
+    } else 
+    {
+      folders ? setSearchedFolder([folders]) : setSearchedFolder([])
+    }
    
     onChange(searchedFolder)
 

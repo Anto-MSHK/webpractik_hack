@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useGetUsersQuery } from '../../store/services/userService';
 import { BreadCrumbsEmployees } from '../BreadCrumbsEmployees/BreadCrumbsEmployees';
 import Spinner from '../SpinnerComponents/Spinner';
@@ -8,13 +8,23 @@ import Employee from './Employee';
 const Employees = () => {
     const { data: employees, isFetching, isError } = useGetUsersQuery()
 
+    const [users, setUsers] = useState([])
+
+
+  useEffect(() => {
+    console.log(employees);
+    setUsers(employees)
+  }, [employees]);
+
+  const handleSearchedUsers = (searchedUsers) => {
+ 
+    setUsers(searchedUsers)
+    
+  }
+
         if(isError){
             return (
                 <div style={{ display: 'flex', flexDirection: 'column', width: '1800px' }}>
-                {
-                    JSON.stringify(console.log(employees))
-                }
-                <BreadCrumbsEmployees/>
                 <div  style={{ display: 'flex', margin: '0 auto'}}>
                     <h1>Произошла какая-то ошибка, либо у вас нет доступа</h1>
                 </div>
@@ -25,10 +35,8 @@ const Employees = () => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', width: '1800px' }}>
-            {
-                JSON.stringify(console.log(employees))
-            }
-            <BreadCrumbsEmployees/>
+    
+            <BreadCrumbsEmployees onChange = {handleSearchedUsers} users = {employees} />
             <div  style={{ display: 'flex'}}>
 
             {
@@ -38,12 +46,14 @@ const Employees = () => {
                           <Spinner  text='Загружаем сотрудников...' size='large' />
                     </div>
                     :
-                    employees.length &&
-                    employees.map(employee => 
-                       
+                    users.length ?
+                    users.map(employee => 
+
                         <Employee key={employee._id} {...employee} />
 
                     )
+                    :
+                    <h1>Сотрудников не найдено</h1>
             }
             </div>
 

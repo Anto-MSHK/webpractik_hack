@@ -12,7 +12,7 @@ const Employee = ({name, email, role}) => {
                 {name}
             </>
         }>
-                <div>Email:{email}</div>
+                <div>Email: {email}</div>
                 <div>Role: {role}</div>
             
         </Card>
