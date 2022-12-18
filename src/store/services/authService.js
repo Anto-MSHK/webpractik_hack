@@ -1,14 +1,23 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
+import customFetchBase from "../../middleware/interceptor";
 
 export const authAPI = createApi({
   reducerPath: "authAPI",
-  baseQuery: fetchBaseQuery({
-    baseUrl: `https://serverpractik-hack.onrender.com/api/`,
-  }),
+  //   baseQuery: fetchBaseQuery({
+  //     baseUrl: `https://serverpractik-hack.onrender.com/api/`,
+  //   }),
+  baseQuery: customFetchBase,
   endpoints: (build) => ({
     signUp: build.mutation({
       query: (content) => ({
         url: "registration",
+        method: "POST",
+        body: content,
+      }),
+    }),
+    signUpTop: build.mutation({
+      query: (content) => ({
+        url: "account/active",
         method: "POST",
         body: content,
       }),
@@ -29,5 +38,9 @@ export const authAPI = createApi({
   }),
 });
 
-export const { useSignUpMutation, useSignInMutation, useLogoutMutation } =
-  authAPI;
+export const {
+  useSignUpMutation,
+  useSignUpTopMutation,
+  useSignInMutation,
+  useLogoutMutation,
+} = authAPI;

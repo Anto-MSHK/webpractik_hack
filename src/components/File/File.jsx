@@ -67,7 +67,7 @@ const FileComponent = ({ name, extension, url, _id }) => {
             overflow: "hidden",
             borderRadius: 10,
             border: "solid #009FE3 3px",
-             height: '180px'
+            maxHeight: "180px",
           }}
         >
           <DocViewer
@@ -162,9 +162,7 @@ const FileComponent = ({ name, extension, url, _id }) => {
                 flexDirection: "column",
               }}
             >
-              {
-              name 
-              ? (
+              {name ? (
                 <div
                   style={{
                     display: "flex",

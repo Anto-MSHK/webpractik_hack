@@ -15,7 +15,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { useCreateFolderMutation } from "../../store/services/folderService";
-import './BreadCrumbsFolder.css'
+import "./BreadCrumbsFolder.css";
 const { Search } = Input;
 
 export const BreadCrumbsFolder = () => {
@@ -134,7 +134,6 @@ export const BreadCrumbsFolder = () => {
         >
           <div>
             <Breadcrumb>
-              <Breadcrumb.Item>Главная</Breadcrumb.Item>
               <Breadcrumb.Item>
                 <Link to="/folders">Документы</Link>
               </Breadcrumb.Item>
@@ -148,13 +147,7 @@ export const BreadCrumbsFolder = () => {
           </div>
           <div>
             <Segmented
-              options={[
-                "По дням",
-                "По неделям",
-                "По месяцам",
-                "По кварталам",
-                "По годам",
-              ]}
+              options={["все", "скрытые", "открытые"]}
               style={{ marginLeft: "10px" }}
             />
           </div>

@@ -1,8 +1,4 @@
-import {
-  configureStore,
-  combineReducers,
-
-} from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import {
   persistStore,
   persistReducer,
@@ -34,7 +30,13 @@ const persistConfig = {
   key: "root",
   version: 1,
   storage,
-  blacklist: [folderAPI.reducerPath, fileAPI.reducerPath],
+  blacklist: [
+    folderAPI.reducerPath,
+    fileAPI.reducerPath,
+    authAPI.reducerPath,
+    "token",
+    userAPI.reducerPath,
+  ],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

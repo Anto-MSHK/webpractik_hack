@@ -7,11 +7,11 @@ import FileComponent from "../File/File";
 import "./FolderContent.css";
 
 export const FolderContent = () => {
-  const { id } = useParams();
+  const { id, folderName } = useParams();
   const { data: files, isFetching } = useGetFolderFilesQuery(id);
   return (
     <div className="folder_content">
-      <BreadCrumbsFile folder_id={id} />
+      <BreadCrumbsFile folder_id={id} folder_name={folderName} />
       <div style={{ display: "flex", gap: "20px", marginTop: "20px" }}>
         {files ? (
           files.map((file) => <FileComponent {...file} />)

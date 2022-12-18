@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import Employees from "./components/Employees/Employees";
+import Employees from "./Components/Employees/Employees";
 
 import LoginForm from "./Pages/AuthPage/LoginFrom";
 import RegisterForm from "./Pages/AuthPage/RegisterForm";
 import { Main } from "./Pages/MainAdminPage/MainAdminPage";
 import { getRole, getToken } from "./store/services/tokenService";
-import { FolderContent } from "./components/FolderContent/FolderContent";
+import { FolderContent } from "./Components/FolderContent/FolderContent";
 import ProfilePage from "./Pages/ProfilePage/ProfilePage";
 
 export const Router = () => {
@@ -22,9 +22,9 @@ export const Router = () => {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/folders" element={<Main />}></Route>
-          <Route path="/folders/:id" element={<FolderContent />} />
+          <Route path="/folders/:folderName/:id" element={<FolderContent />} />
           <Route path="/employees" element={<Employees />} />
-          <Route path ="/user/:userName/:id" element = {<ProfilePage/>}/>
+          <Route path="/user/:userName/:id" element={<ProfilePage />} />
         </Routes>
       </div>
     );

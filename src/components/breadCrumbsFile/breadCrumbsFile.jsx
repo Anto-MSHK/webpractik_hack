@@ -19,7 +19,7 @@ import { useCreateFileMutation } from "../../store/services/fileService";
 const { message, Dragger } = Upload;
 const { Search } = Input;
 
-export const BreadCrumbsFile = ({ folder_id }) => {
+export const BreadCrumbsFile = ({ folder_id, folder_name }) => {
   const [addFile] = useCreateFileMutation();
   const [file, setFile] = useState(null);
   /*    const navigate = useNavigate(); */
@@ -170,12 +170,11 @@ export const BreadCrumbsFile = ({ folder_id }) => {
         >
           <div>
             <Breadcrumb>
-              <Breadcrumb.Item>Главная</Breadcrumb.Item>
               <Breadcrumb.Item>
                 <Link to="/folders">Документы</Link>
               </Breadcrumb.Item>
               <Breadcrumb.Item>
-                <Link to="/employees">Сотрудники</Link>
+                <Link>{folder_name}</Link>
               </Breadcrumb.Item>
             </Breadcrumb>
           </div>
@@ -184,13 +183,7 @@ export const BreadCrumbsFile = ({ folder_id }) => {
           </div>
           <div>
             <Segmented
-              options={[
-                "По дням",
-                "По неделям",
-                "По месяцам",
-                "По кварталам",
-                "По годам",
-              ]}
+              options={["все", "скрытые", "открытые"]}
               style={{ marginLeft: "10px" }}
             />
           </div>

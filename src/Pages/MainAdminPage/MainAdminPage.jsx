@@ -2,11 +2,11 @@ import React from "react";
 
 import { Space } from "antd";
 import "./MainAdminPage.css";
-import { Folder } from "../../components/Folder/Folder";
+import { Folder } from "../../Components/Folder/Folder";
 import { useGetFoldersQuery } from "../../store/services/folderService";
-import { BreadCrumbsFolder } from "../../components/breadCrumbsFolder/breadCrumbsFolder";
-import './MainAdminPage.css'
-import Spinner from "../../components/SpinnerComponents/Spinner";
+import { BreadCrumbsFolder } from "../../Components/breadCrumbsFolder/breadCrumbsFolder";
+import "./MainAdminPage.css";
+import Spinner from "../../Components/SpinnerComponents/Spinner";
 
 const data = Array.from({
   length: 23,
@@ -33,11 +33,9 @@ export const Main = () => {
     <div className="mainAdmpage-main">
       <BreadCrumbsFolder />
       <div style={{ display: "flex" }}>
-        {
-        isLoading 
-        ?
-        <Spinner text='Загружаем папки...' size = 'large'/>
-        :
+        {isLoading ? (
+          <Spinner text="Загружаем папки..." size="large" />
+        ) : (
           data &&
           data.map((folder, index) => (
             <Folder
@@ -46,7 +44,8 @@ export const Main = () => {
               createDate={folder.createDate}
               id={folder._id}
             />
-          ))}
+          ))
+        )}
       </div>
     </div>
   );
