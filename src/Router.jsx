@@ -8,6 +8,7 @@ import { Main } from "./Pages/MainAdminPage/MainAdminPage";
 import { getRole, getToken } from "./store/services/tokenService";
 import { FolderContent } from "./Components/FolderContent/FolderContent";
 import ProfilePage from "./Pages/ProfilePage/ProfilePage";
+import Employee from "./Components/Employees/Employee";
 
 export const Router = () => {
   const select = useSelector(getToken());

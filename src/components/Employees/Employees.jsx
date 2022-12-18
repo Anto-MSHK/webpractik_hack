@@ -23,7 +23,7 @@ const Employees = () => {
   if (isError) {
     return (
       <div
-        style={{ display: "flex", flexDirection: "column", width: "1800px" }}
+        style={{ display: "flex", flexDirection: "column", width: "1200px" }}
       >
         <div style={{ display: "flex", margin: "0 auto" }}>
           <h1>Произошла какая-то ошибка, либо у вас нет доступа</h1>
@@ -33,7 +33,7 @@ const Employees = () => {
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", width: "1200px" }}>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <BreadCrumbsUser />
       <div style={{ display: "flex" }}>
         {isFetching ? (
