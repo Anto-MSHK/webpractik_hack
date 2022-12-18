@@ -1,7 +1,8 @@
 .breadCrumbs-main {
     display: flex;
     flex-direction: column;
-    width: 1300px;
+    width: 1800px;
+    margin: 0 auto;
 }
 
 .breadCrumbs-maincard {

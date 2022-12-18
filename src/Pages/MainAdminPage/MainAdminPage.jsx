@@ -1,10 +1,12 @@
 import React from "react";
-import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
-import { Avatar, List, Space } from "antd";
+
+import { Space } from "antd";
 import "./MainAdminPage.css";
 import { Folder } from "../../components/Folder/Folder";
 import { useGetFoldersQuery } from "../../store/services/folderService";
 import { BreadCrumbsFolder } from "../../components/breadCrumbsFolder/breadCrumbsFolder";
+import './MainAdminPage.css'
+import Spinner from "../../components/SpinnerComponents/Spinner";
 
 const data = Array.from({
   length: 23,
@@ -28,10 +30,14 @@ export const Main = () => {
   const { data, errors, isLoading } = useGetFoldersQuery();
   console.log(data);
   return (
-    <div className={"mainAdmpage-main"}>
+    <div className="mainAdmpage-main">
       <BreadCrumbsFolder />
       <div style={{ display: "flex" }}>
-        {!isLoading &&
+        {
+        isLoading 
+        ?
+        <Spinner text='Загружаем папки...' size = 'large'/>
+        :
           data &&
           data.map((folder, index) => (
             <Folder
